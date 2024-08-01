@@ -1,6 +1,12 @@
 {
   "name": "just-todo",
   "version": "0.1.0",
+  "license": "GPL-3.0-only",
+  "author": "Jakub Nieśpielak <kuba.niespielak@gmail.com> (https://github.com/hitusss)",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hitusss/just-todo.git"
+  },
   "private": true,
   "type": "module",
   "scripts": {
@@ -47,6 +53,9 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": "20"
   },
   "ct3aMetadata": {
     "initVersion": "7.36.2"
