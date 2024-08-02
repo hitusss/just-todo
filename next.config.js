@@ -4,6 +4,10 @@
  */
 await import("./src/env.js");
 
+if (process.env.MOCKS === "true") {
+  await import("./tests/mocks/index.js");
+}
+
 /** @type {import("next").NextConfig} */
 const config = {};
 

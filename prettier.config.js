@@ -10,6 +10,7 @@ const config = {
     "<THIRD_PARTY_MODULES>",
     "",
     "^types$",
+    "^tests$",
     "^~/lib/(.*)$",
     "^~/components/ui/(.*)$",
     "^~/components/(.*)$",
