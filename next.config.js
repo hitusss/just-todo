@@ -5,7 +5,7 @@ if (process.env.MOCKS === "true") {
   await import("./tests/mocks/index.js");
 }
 
-///** @type {import("next").NextConfig} */
+/** @type {import('next').NextConfig} */
 const config = {};
 
 export default withSentryConfig(config, {
