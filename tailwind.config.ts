@@ -57,6 +57,14 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontSize: {
+        h1: ["3.5rem", { lineHeight: "1.2", fontWeight: "700" }],
+        h2: ["2.5rem", { lineHeight: "1.2", fontWeight: "700" }],
+        h3: ["2rem", { lineHeight: "1.2", fontWeight: "700" }],
+        h4: ["1.75rem", { lineHeight: "1.2", fontWeight: "700" }],
+        h5: ["1.5rem", { lineHeight: "1.2", fontWeight: "700" }],
+        h6: ["1rem", { lineHeight: "1.2", fontWeight: "700" }],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
