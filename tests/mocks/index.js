@@ -1,7 +1,9 @@
 import closeWithGrace from "close-with-grace";
 import { setupServer } from "msw/node";
 
-export const server = setupServer();
+import { handlers as resendHandlers } from "./handlers/resend.js";
+
+export const server = setupServer(...resendHandlers);
 
 server.listen({
   onUnhandledRequest(request, print) {
