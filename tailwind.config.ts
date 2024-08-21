@@ -58,12 +58,30 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontSize: {
-        h1: ["3.5rem", { lineHeight: "1.2", fontWeight: "700" }],
-        h2: ["2.5rem", { lineHeight: "1.2", fontWeight: "700" }],
-        h3: ["2rem", { lineHeight: "1.2", fontWeight: "700" }],
-        h4: ["1.75rem", { lineHeight: "1.2", fontWeight: "700" }],
-        h5: ["1.5rem", { lineHeight: "1.2", fontWeight: "700" }],
-        h6: ["1rem", { lineHeight: "1.2", fontWeight: "700" }],
+        h1: [
+          "2.5rem",
+          { lineHeight: "1.2", fontWeight: "800", letterSpacing: "-0.025em" },
+        ],
+        h2: [
+          "2rem",
+          { lineHeight: "1.2", fontWeight: "700", letterSpacing: "-0.025em" },
+        ],
+        h3: [
+          "1.75rem",
+          { lineHeight: "1.2", fontWeight: "700", letterSpacing: "-0.025em" },
+        ],
+        h4: [
+          "1.5rem",
+          { lineHeight: "1.2", fontWeight: "600", letterSpacing: "-0.025em" },
+        ],
+        h5: [
+          "1.25rem",
+          { lineHeight: "1.2", fontWeight: "600", letterSpacing: "-0.025em" },
+        ],
+        h6: [
+          "1.125rem",
+          { lineHeight: "1.2", fontWeight: "600", letterSpacing: "-0.025em" },
+        ],
       },
       keyframes: {
         "accordion-down": {
