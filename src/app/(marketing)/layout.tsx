@@ -21,7 +21,7 @@ export default async function MarketingLayout({
             </Button>
           ) : (
             <Button asChild>
-              <Link href="/api/auth/signin">Login</Link>
+              <Link href="/login">Login</Link>
             </Button>
           )}
         </nav>
