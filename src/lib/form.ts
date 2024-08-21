@@ -39,7 +39,6 @@ export function useFormWithAction<Schema extends AnyZodObject>({
   }
 
   useEffect(() => {
-    console.log("rerender: ", +new Date());
     if (state && "resetForm" in state && state.resetForm) {
       form.reset();
     }
