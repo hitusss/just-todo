@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { Button } from "~/components/ui/button";
 import { auth } from "~/server/auth";
+import { signOut } from "~/actions/auth";
+import { Button } from "~/components/ui/button";
 
 export default async function MarketingLayout({
   children,
@@ -16,9 +17,14 @@ export default async function MarketingLayout({
         <span className="font-bold">LOGO</span>
         <nav>
           {session ? (
-            <Button asChild>
-              <Link href="/app">Go to app</Link>
-            </Button>
+            <div className="flex gap-4">
+              <form action={signOut}>
+                <Button variant="destructive">Logout</Button>
+              </form>
+              <Button asChild>
+                <Link href="/app">Go to app</Link>
+              </Button>
+            </div>
           ) : (
             <Button asChild>
               <Link href="/login">Login</Link>
