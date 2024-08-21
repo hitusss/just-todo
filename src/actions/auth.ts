@@ -1,8 +1,8 @@
 "use server";
 
-import { signIn } from "~/server/auth";
-import { parseFormData } from "~/server/form";
 import { LoginWithEmailSchema } from "~/validators/user";
+import { signOut as authSignOut, signIn } from "~/server/auth";
+import { parseFormData } from "~/server/form";
 
 export async function signInWithEmail(prevState: unknown, formData: FormData) {
   const submission = await parseFormData(formData, {
@@ -21,4 +21,8 @@ export async function signInWithGithub() {
 
 export async function signInWithDiscord() {
   return signIn("discord");
+}
+
+export async function signOut() {
+  return authSignOut();
 }
