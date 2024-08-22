@@ -18,6 +18,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${GeistSans.variable} h-full overflow-x-hidden`}
+      suppressHydrationWarning
     >
       <body>
         <ThemeProvider
