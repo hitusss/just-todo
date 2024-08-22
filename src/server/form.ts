@@ -1,6 +1,6 @@
-import { type AnyZodObject, type z } from "zod";
+import { type z, type ZodTypeAny } from "zod";
 
-type ReplyOptions<Schema extends AnyZodObject> =
+type ReplyOptions<Schema extends ZodTypeAny> =
   | {
       resetForm: boolean;
     }
@@ -11,7 +11,7 @@ type ReplyOptions<Schema extends AnyZodObject> =
       formErrors?: string[];
     };
 
-export type SubmissionResult<Schema extends AnyZodObject> = {
+export type SubmissionResult<Schema extends ZodTypeAny> = {
   status: "SUCCESS" | "ERROR";
   fields?: Record<string, FormDataEntryValue>;
   fieldsErrors?: {
@@ -21,7 +21,7 @@ export type SubmissionResult<Schema extends AnyZodObject> = {
   resetForm?: boolean;
 };
 
-export async function parseFormData<Schema extends AnyZodObject>(
+export async function parseFormData<Schema extends ZodTypeAny>(
   formData: FormData,
   {
     schema,
@@ -98,6 +98,7 @@ export async function parseFormData<Schema extends AnyZodObject>(
   if (result.success) {
     return {
       success: true,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       data: result.data,
       reply,
     };

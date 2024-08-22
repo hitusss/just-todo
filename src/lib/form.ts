@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFormState } from "react-dom";
 import { useForm, type UseFormProps } from "react-hook-form";
-import { type AnyZodObject, type z } from "zod";
+import { type z, type ZodTypeAny } from "zod";
 
 import { type SubmissionResult } from "~/server/form";
 
-export function useFormWithAction<Schema extends AnyZodObject>({
+export function useFormWithAction<Schema extends ZodTypeAny>({
   schema,
   action,
   permalink,
