@@ -10,6 +10,7 @@ export const users = pgTable("user", {
     .notNull()
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
+  username: varchar("username", { length: 255 }).unique(),
   name: varchar("name", { length: 255 }),
   email: varchar("email", { length: 255 }).notNull(),
   emailVerified: timestamp("emailVerified", {
