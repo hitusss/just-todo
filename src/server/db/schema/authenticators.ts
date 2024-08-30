@@ -25,6 +25,7 @@ export const authenticators = pgTable(
     transports: text("transports"),
     createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updatedAt", { mode: "date" })
+      .defaultNow()
       .notNull()
       .$onUpdate(() => new Date()),
   },

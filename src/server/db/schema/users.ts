@@ -20,6 +20,7 @@ export const users = pgTable("user", {
   image: varchar("image", { length: 255 }),
   createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
   updatedAt: timestamp("updatedAt", { mode: "date" })
+    .defaultNow()
     .notNull()
     .$onUpdate(() => new Date()),
 });

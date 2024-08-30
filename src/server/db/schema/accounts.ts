@@ -34,6 +34,7 @@ export const accounts = pgTable(
     session_state: varchar("session_state", { length: 255 }),
     createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updatedAt", { mode: "date" })
+      .defaultNow()
       .notNull()
       .$onUpdate(() => new Date()),
   },
