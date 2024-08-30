@@ -16,11 +16,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token }) {
       const dbUser = await db.query.users.findFirst({
         where: (users, { eq }) => eq(users.email, token.email),
+        columns: { id: true, username: true },
       });
       if (!dbUser) return null;
       return {
         ...token,
         id: dbUser.id,
+        username: dbUser.username,
       };
     },
     session({ session, token }) {
@@ -30,6 +32,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           ...session.user,
           id: token.id,
           email: token.email,
+          username: token.username,
           name: token.name,
           image: token.picture,
         },
