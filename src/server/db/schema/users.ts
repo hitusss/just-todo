@@ -17,6 +17,10 @@ export const users = pgTable("user", {
     withTimezone: true,
   }),
   image: varchar("image", { length: 255 }),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt", { mode: "date" })
+    .notNull()
+    .$onUpdate(() => new Date()),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
