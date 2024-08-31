@@ -18,7 +18,7 @@ export const authConfig = {
       const protectedRoutes = ["/app"];
 
       if (request.nextUrl.pathname.startsWith("/login") && isLoggedIn) {
-        return NextResponse.redirect(new URL("/app", request.url));
+        return NextResponse.redirect(new URL("/app", request.nextUrl.origin));
       }
       if (
         protectedRoutes.some((route) =>
