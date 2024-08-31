@@ -13,16 +13,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   callbacks: {
     ...authConfig.callbacks,
-    async jwt({ token }) {
+    async jwt({ token, user }) {
       const dbUser = await db.query.users.findFirst({
         where: (users, { eq }) => eq(users.email, token.email),
-        columns: { id: true, username: true },
+        columns: {
+          id: true,
+          username: true,
+          name: true,
+          email: true,
+          image: true,
+        },
       });
       if (!dbUser) return null;
       return {
         ...token,
         id: dbUser.id,
-        username: dbUser.username,
+        email: dbUser.email,
+        username: dbUser.username ?? undefined,
+        name: dbUser.name ?? undefined,
+        picture: dbUser.image ?? undefined,
       };
     },
     session({ session, token }) {
