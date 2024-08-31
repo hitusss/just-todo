@@ -1,12 +1,14 @@
 "use client";
 
-import {
-  signInWithDiscord,
-  signInWithEmail,
-  signInWithGithub,
-} from "~/actions/auth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks";
+
 import { LoginWithEmailSchema } from "~/validators/user";
-import { useFormWithAction } from "~/lib/form";
+import {
+  loginWithDiscordAction,
+  loginWithEmailAction,
+  loginWithGithubAction,
+} from "~/actions/auth";
 import { Button } from "~/components/ui/button";
 import {
   Form,
@@ -19,15 +21,15 @@ import {
 import { Input } from "~/components/ui/input";
 
 export function LoginForm() {
-  const { form, formAction, onSubmit } = useFormWithAction({
-    schema: LoginWithEmailSchema,
-    action: signInWithEmail,
-  });
+  const { form, handleSubmitWithAction } = useHookFormAction(
+    loginWithEmailAction,
+    zodResolver(LoginWithEmailSchema),
+  );
 
   return (
     <>
       <Form {...form}>
-        <form action={formAction} onSubmit={onSubmit} className="grid">
+        <form onSubmit={handleSubmitWithAction} className="grid">
           <FormField
             control={form.control}
             name="email"
@@ -51,17 +53,13 @@ export function LoginForm() {
       </div>
       <ul className="grid gap-4">
         <li>
-          <form action={signInWithGithub}>
-            <Button type="submit" className="w-full">
-              Login with Github
-            </Button>
+          <form action={loginWithGithubAction} className="grid">
+            <Button type="submit">Login with Github</Button>
           </form>
         </li>
         <li>
-          <form action={signInWithDiscord}>
-            <Button type="submit" className="w-full">
-              Login with Discord
-            </Button>
+          <form action={loginWithDiscordAction} className="grid">
+            <Button type="submit">Login with Discord</Button>
           </form>
         </li>
       </ul>
