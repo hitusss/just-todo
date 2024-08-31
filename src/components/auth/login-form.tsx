@@ -24,6 +24,11 @@ export function LoginForm() {
   const { form, handleSubmitWithAction } = useHookFormAction(
     loginWithEmailAction,
     zodResolver(LoginWithEmailSchema),
+    {
+      formProps: {
+        defaultValues: { email: "" },
+      },
+    },
   );
 
   return (
