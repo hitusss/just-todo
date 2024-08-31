@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { type NextAuthConfig } from "next-auth";
 
 export const authConfig = {
@@ -16,6 +17,9 @@ export const authConfig = {
       const isLoggedIn = !!auth?.user;
       const protectedRoutes = ["/app"];
 
+      if (request.nextUrl.pathname.startsWith("/login") && isLoggedIn) {
+        return NextResponse.redirect(new URL("/app", request.url));
+      }
       if (
         protectedRoutes.some((route) =>
           request.nextUrl.pathname.startsWith(route),
