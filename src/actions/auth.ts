@@ -1,28 +1,23 @@
 "use server";
 
 import { LoginWithEmailSchema } from "~/validators/user";
-import { signOut as authSignOut, signIn } from "~/server/auth";
-import { parseFormData } from "~/server/form";
+import { signIn, signOut } from "~/server/auth";
+import { actionClient } from "~/lib/safe-action";
 
-export async function signInWithEmail(prevState: unknown, formData: FormData) {
-  const submission = await parseFormData(formData, {
-    schema: LoginWithEmailSchema,
+export const loginWithEmailAction = actionClient
+  .schema(LoginWithEmailSchema)
+  .action(async ({ parsedInput }) => {
+    return signIn("resend", { email: parsedInput.email });
   });
-  if (!submission.success) {
-    return submission.reply();
-  }
 
-  return signIn("resend", { email: submission.data.email });
+export async function loginWithGithubAction() {
+  await signIn("github");
 }
 
-export async function signInWithGithub() {
-  return signIn("github");
+export async function loginWithDiscordAction() {
+  await signIn("discord");
 }
 
-export async function signInWithDiscord() {
-  return signIn("discord");
-}
-
-export async function signOut() {
-  return authSignOut();
+export async function logoutAction() {
+  await signOut();
 }
