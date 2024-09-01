@@ -1,15 +1,12 @@
 import * as Sentry from "@sentry/nextjs";
 
+import { env } from "~/env.js";
+
 Sentry.init({
-  dsn: process.env.SENTRY_DSN,
+  dsn: env.SENTRY_DSN,
+  integrations: [Sentry.replayIntegration()],
   tracesSampleRate: 1,
-  debug: false,
-  replaysOnErrorSampleRate: 1.0,
   replaysSessionSampleRate: 0.1,
-  integrations: [
-    Sentry.replayIntegration({
-      maskAllText: true,
-      blockAllMedia: true,
-    }),
-  ],
+  replaysOnErrorSampleRate: 1.0,
+  debug: false,
 });

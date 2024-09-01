@@ -1,6 +1,7 @@
 import { withSentryConfig } from "@sentry/nextjs";
 
-await import("./src/env.js");
+import { env } from "./src/env.js";
+
 if (process.env.MOCKS === "true") {
   await import("./tests/mocks/index.js");
 }
@@ -9,10 +10,13 @@ if (process.env.MOCKS === "true") {
 const config = {};
 
 export default withSentryConfig(config, {
-  org: process.env.SENTRY_ORG,
-  project: process.env.SENTRY_PROJECT,
+  org: env.SENTRY_ORG,
+  project: env.SENTRY_PROJECT,
   silent: !process.env.CI,
   widenClientFileUpload: true,
+  reactComponentAnnotation: {
+    enabled: true,
+  },
   hideSourceMaps: true,
   disableLogger: true,
   automaticVercelMonitors: true,
