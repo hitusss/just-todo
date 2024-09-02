@@ -9,7 +9,6 @@ export const env = createEnv({
 
     DATABASE_URL: z.string().url(),
 
-    SENTRY_DSN: z.string().url(),
     SENTRY_ORG: z.string(),
     SENTRY_PROJECT: z.string(),
 
@@ -35,12 +34,14 @@ export const env = createEnv({
     DISCORD_CLIENT_SECRET: z.string(),
   },
 
-  client: {},
+  client: {
+    NEXT_PUBLIC_SENTRY_DNS: z.string().url(),
+  },
 
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_URL: process.env.DATABASE_URL,
-    SENTRY_DSN: process.env.SENTRY_DSN,
+    NEXT_PUBLIC_SENTRY_DNS: process.env.NEXT_PUBLIC_SENTRY_DNS,
     SENTRY_ORG: process.env.SENTRY_ORG,
     SENTRY_PROJECT: process.env.SENTRY_PROJECT,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
