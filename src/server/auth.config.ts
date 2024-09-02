@@ -7,6 +7,7 @@ export const authConfig = {
     signIn: "/login",
     error: "/login",
     verifyRequest: "/verify-request",
+    newUser: "/onboarding",
   },
   providers: [
     // added later in auth.ts since it requires bcrypt which is only compatible with Node.js
@@ -28,8 +29,27 @@ export const authConfig = {
         if (!isLoggedIn) {
           return false;
         }
+        if (!auth.user.username) {
+          const url = new URL("/onboarding", request.nextUrl.origin);
+          const redirectTo = `${request.nextUrl.pathname}${request.nextUrl.search}`;
+          url.searchParams.set("redirectTo", redirectTo);
+          return NextResponse.redirect(url);
+        }
       }
       return true;
+    },
+    session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          email: token.email,
+          username: token.username,
+          name: token.name,
+          image: token.picture,
+        },
+      };
     },
   },
 } satisfies NextAuthConfig;

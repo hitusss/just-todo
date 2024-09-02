@@ -29,3 +29,22 @@ export const NameSchema = z
 export const LoginWithEmailSchema = z.object({
   email: EmailSchema,
 });
+
+export const OnboardingSchema = z.object({
+  name: NameSchema,
+  username: UsernameSchema,
+  redirectTo: z.string().optional(),
+});
+
+export const OnboardingSchemaTest = z.object({
+  name: NameSchema,
+  username: z
+    .string({ required_error: "Username is required" })
+    .min(USERNAME_MIN_LENGTH, { message: "Username is too short" })
+    .max(USERNAME_MAX_LENGTH, { message: "Username is too long" })
+    .regex(/^[A-Z0-9_]+$/, {
+      message: "Username can only include letters, numbers, and underscores",
+    })
+    .transform((value) => value.toLowerCase()),
+  redirectTo: z.string().optional(),
+});

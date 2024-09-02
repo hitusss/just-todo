@@ -9,11 +9,17 @@ import { env } from "~/env";
 
 import { authConfig } from "./auth.config";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const {
+  handlers,
+  signIn,
+  signOut,
+  auth,
+  unstable_update: update,
+} = NextAuth({
   ...authConfig,
   callbacks: {
     ...authConfig.callbacks,
-    async jwt({ token, user }) {
+    async jwt({ token }) {
       const dbUser = await db.query.users.findFirst({
         where: (users, { eq }) => eq(users.email, token.email),
         columns: {
@@ -32,19 +38,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         username: dbUser.username ?? undefined,
         name: dbUser.name ?? undefined,
         picture: dbUser.image ?? undefined,
-      };
-    },
-    session({ session, token }) {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id,
-          email: token.email,
-          username: token.username,
-          name: token.name,
-          image: token.picture,
-        },
       };
     },
   },
