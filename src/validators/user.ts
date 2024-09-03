@@ -33,18 +33,13 @@ export const LoginWithEmailSchema = z.object({
 export const OnboardingSchema = z.object({
   name: NameSchema,
   username: UsernameSchema,
-  redirectTo: z.string().optional(),
-});
-
-export const OnboardingSchemaTest = z.object({
-  name: NameSchema,
-  username: z
-    .string({ required_error: "Username is required" })
-    .min(USERNAME_MIN_LENGTH, { message: "Username is too short" })
-    .max(USERNAME_MAX_LENGTH, { message: "Username is too long" })
-    .regex(/^[A-Z0-9_]+$/, {
-      message: "Username can only include letters, numbers, and underscores",
+  agreeToTermsOfServiceAndPrivacyPolicy: z
+    .boolean({
+      required_error:
+        "You must agree to the terms of service and privacy policy",
     })
-    .transform((value) => value.toLowerCase()),
+    .refine((val) => val === true, {
+      message: "You must agree to the terms of service and privacy policy",
+    }),
   redirectTo: z.string().optional(),
 });

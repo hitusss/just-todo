@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks";
@@ -7,6 +8,7 @@ import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hoo
 import { OnboardingSchema } from "~/validators/user";
 import { onboardingAction } from "~/actions/auth";
 import { Button } from "~/components/ui/button";
+import { Checkbox } from "~/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -28,6 +30,7 @@ export function OnboardingForm() {
         defaultValues: {
           username: "",
           name: "",
+          agreeToTermsOfServiceAndPrivacyPolicy: false,
           redirectTo: searchParams.get("redirectTo") ?? undefined,
         },
       },
@@ -71,6 +74,39 @@ export function OnboardingForm() {
               <FormDescription>
                 Name will be your display name on the platform.
               </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="agreeToTermsOfServiceAndPrivacyPolicy"
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex gap-2">
+                <FormControl>
+                  <Checkbox
+                    name={field.name}
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel>
+                  Do you agree to our{" "}
+                  <Button variant="link" asChild className="inline p-0">
+                    <Link href="/tos" target="_blank">
+                      Terms of Service
+                    </Link>
+                  </Button>{" "}
+                  and{" "}
+                  <Button variant="link" asChild className="inline p-0">
+                    <Link href="/privacy" target="_blank">
+                      Privacy Policy
+                    </Link>
+                  </Button>
+                  ?
+                </FormLabel>
+              </div>
               <FormMessage />
             </FormItem>
           )}
