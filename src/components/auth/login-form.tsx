@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useHookFormAction } from "@next-safe-action/adapter-react-hook-form/hooks";
+import { useAction } from "next-safe-action/hooks";
 
 import { LoginWithEmailSchema } from "~/validators/user";
 import {
@@ -31,6 +32,9 @@ export function LoginForm() {
     },
   );
 
+  const loginWithGithub = useAction(loginWithGithubAction);
+  const loginWithDiscord = useAction(loginWithDiscordAction);
+
   return (
     <>
       <Form {...form}>
@@ -58,14 +62,14 @@ export function LoginForm() {
       </div>
       <ul className="grid gap-4">
         <li>
-          <form action={loginWithGithubAction} className="grid">
-            <Button type="submit">Login with Github</Button>
-          </form>
+          <Button onClick={() => loginWithGithub.execute()}>
+            Login with Github
+          </Button>
         </li>
         <li>
-          <form action={loginWithDiscordAction} className="grid">
-            <Button type="submit">Login with Discord</Button>
-          </form>
+          <Button onClick={() => loginWithDiscord.execute()}>
+            Login with Discord
+          </Button>
         </li>
       </ul>
     </>
