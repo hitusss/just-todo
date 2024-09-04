@@ -62,12 +62,12 @@ export function LoginForm() {
       </div>
       <ul className="grid gap-4">
         <li>
-          <Button onClick={() => loginWithGithub.execute()}>
+          <Button onClick={() => loginWithGithub.execute()} className="w-full">
             Login with Github
           </Button>
         </li>
         <li>
-          <Button onClick={() => loginWithDiscord.execute()}>
+          <Button onClick={() => loginWithDiscord.execute()} className="w-full">
             Login with Discord
           </Button>
         </li>
