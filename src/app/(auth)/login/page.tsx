@@ -1,3 +1,9 @@
+import {
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import { LoginForm } from "~/components/auth/login-form";
 
 export default async function LoginPage({
@@ -7,13 +13,20 @@ export default async function LoginPage({
 }) {
   return (
     <>
-      <h1 className="text-center">Login</h1>
-      <LoginForm />
-      {error ? (
-        <p className="text-center text-sm font-medium text-destructive">
-          {error}
-        </p>
-      ) : null}
+      <CardHeader>
+        <CardTitle>Login</CardTitle>
+        <CardDescription>
+          Login with your email or use one of the providers
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <LoginForm />
+        {error ? (
+          <p className="text-center text-sm font-medium text-destructive">
+            {error}
+          </p>
+        ) : null}
+      </CardContent>
     </>
   );
 }
