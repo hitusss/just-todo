@@ -1,6 +1,6 @@
 "use client";
 
-import { ExitIcon } from "@radix-ui/react-icons";
+import { LogOut } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 
 import { logoutAction } from "~/actions/auth";
@@ -10,7 +10,7 @@ export function LogoutForm() {
   const logout = useAction(logoutAction);
   return (
     <Button onClick={() => logout.execute()} className="gap-2">
-      <ExitIcon />
+      <LogOut className="h-4 w-4" />
       Logout
     </Button>
   );
