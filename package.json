@@ -20,7 +20,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "next lint",
-    "setup": "pdocker-compose up -d && npm run build && pnpm run db:migrate && pnpm run db:seed && pnpm run test:e2e:install",
+    "setup": "docker-compose up -d && npm run build && pnpm run db:migrate && pnpm run db:seed && pnpm run test:e2e:install",
     "start": "next start",
     "start:mocks": "cross-env MOCKS=true next start",
     "test": "vitest",
