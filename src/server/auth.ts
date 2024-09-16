@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
 import Github from "next-auth/providers/github";
 import Resend from "next-auth/providers/resend";
+import { useSession } from "next-auth/react";
 
 import { db } from "~/server/db";
 import { env } from "~/env";
@@ -57,3 +58,11 @@ export const {
     }),
   ],
 });
+
+export async function requireAuth() {
+  const session = await auth();
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
+  return session;
+}
