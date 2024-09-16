@@ -1,15 +1,11 @@
 import { createSafeActionClient } from "next-safe-action";
 
-import { auth } from "~/server/auth";
+import { requireAuth } from "~/server/auth";
 
 export const actionClient = createSafeActionClient();
 
 export const authActionClient = actionClient.use(async ({ next }) => {
-  const session = await auth();
-
-  if (!session) {
-    throw new Error("Unauthorized");
-  }
+  const session = await requireAuth();
 
   return next({
     ctx: {
