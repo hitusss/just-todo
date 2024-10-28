@@ -12,19 +12,19 @@ import { actionClient, authActionClient } from "~/lib/safe-action";
 
 export const loginWithEmailAction = actionClient
   .schema(LoginWithEmailSchema)
-  .action(({ parsedInput }) => {
+  .action(async ({ parsedInput }) => {
     return signIn("resend", { email: parsedInput.email });
   });
 
-export const loginWithGithubAction = actionClient.action(() => {
+export const loginWithGithubAction = actionClient.action(async () => {
   return signIn("github");
 });
 
-export const loginWithDiscordAction = actionClient.action(() => {
+export const loginWithDiscordAction = actionClient.action(async () => {
   return signIn("discord");
 });
 
-export const logoutAction = actionClient.action(() => {
+export const logoutAction = actionClient.action(async () => {
   return signOut();
 });
 
