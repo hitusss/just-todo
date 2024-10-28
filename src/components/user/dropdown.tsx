@@ -29,9 +29,7 @@ export async function UserDropdown() {
           <UserPresents user={user} />
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>Item 1</DropdownMenuItem>
-        </DropdownMenuGroup>
+        <DropdownMenuGroup></DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <LogoutForm className="w-full justify-start" />
