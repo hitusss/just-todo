@@ -6,16 +6,12 @@ import {
 } from "~/components/ui/card";
 import { LoginForm } from "~/components/auth/login-form";
 
-export default async function LoginPage(
-  props: {
-    searchParams: Promise<{ error?: string }>;
-  }
-) {
+export default async function LoginPage(props: {
+  searchParams: Promise<{ error?: string }>;
+}) {
   const searchParams = await props.searchParams;
 
-  const {
-    error
-  } = searchParams;
+  const { error } = searchParams;
 
   return (
     <>
